@@ -68,7 +68,7 @@ export default function DepartmentPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#f8fafc' }}>
       <div style={{
-        background: `linear-gradient(135deg, ${dept.color} 0%, ${dept.accentColor} 100%)`,
+        background: `linear-gradient(135deg, #1a2744 0%, #2d4a7a 100%)`,
         padding: '40px 0', color: 'white',
       }}>
         <div className="container">
