@@ -84,6 +84,17 @@ export default function PDFGenerator({ style }) {
       // Decorative gold stripe
       fr(0, 0, 6, H, GOLD);
 
+      // Logo placeholder box (top right)
+      fr(W - M - 50, 18, 50, 30, [20, 35, 60]);
+      doc.setDrawColor(...GOLD);
+      doc.setLineWidth(1);
+      doc.rect(W - M - 50, 18, 50, 30);
+      sf(7, 'bold', GOLD);
+      tx('JAV', W - M - 25, 29, { align: 'center' });
+      sf(5.5, 'normal', [148, 163, 184]);
+      tx('LOGO PLACEHOLDER', W - M - 25, 37, { align: 'center' });
+      tx('Replace with official logo', W - M - 25, 43, { align: 'center' });
+
       // Gold accent bar
       fr(M + 2, 55, 5, 90, GOLD);
 
