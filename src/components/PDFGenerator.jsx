@@ -548,7 +548,7 @@ export default function PDFGenerator({ style }) {
 
       const eraseAndDraw = (sec, py, ipg) => {
         doc.setPage(ipg);
-        fr(W - M - 20, py - 6, 20, 9, 'white');
+        fr(W - M - 20, py - 6, 20, 9, WHITE);
         if (sec.key && pageMap[sec.key]) {
           sf(sec.major ? 10 : 9, sec.major ? 'bold' : 'normal', NAVY);
           tx(String(pageMap[sec.key]), W - M, py, { align: 'right' });
