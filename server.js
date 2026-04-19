@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const PORT = 5000;
+const PORT = 3001;
 
 const DOCS_ROOT = __dirname;
 
@@ -68,12 +68,6 @@ app.get('/files/*', (req, res) => {
   res.sendFile(fullPath);
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Jordan Aviation Document Repository running on port ${PORT}`);
+app.listen(PORT, 'localhost', () => {
+  console.log(`Jordan Aviation API server running on port ${PORT}`);
 });

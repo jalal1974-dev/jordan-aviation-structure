@@ -1,13 +1,25 @@
 {
-  "name": "jordan-aviation-docs",
+  "name": "jordan-aviation-org",
   "version": "1.0.0",
-  "description": "Jordan Aviation Document Repository",
+  "description": "Jordan Aviation Airline Organization Structure System",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "concurrently \"node server.js\" \"vite\"",
+    "start": "concurrently \"node server.js\" \"vite\"",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "express": "^4.22.1"
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "d3": "^7.9.0",
+    "express": "^4.18.2",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0",
+    "vite": "^5.1.4"
   }
 }

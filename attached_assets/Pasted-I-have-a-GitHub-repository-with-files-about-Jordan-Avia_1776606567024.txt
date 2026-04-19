@@ -1,0 +1,105 @@
+I have a GitHub repository with files about Jordan Aviation Airline at:
+https://github.com/jalal1974-dev/jordan-aviation-structure
+
+Please build a complete full-stack web application that does the following:
+
+## PROJECT OVERVIEW
+Create a comprehensive Jordan Aviation Airline Organization Structure System 
+based on CARC (Civil Aviation Regulatory Commission) standards and 
+international airline standards (IATA, ICAO).
+
+## PART 1 — COMPLETE ORGANIZATION STRUCTURE
+Build a full organizational chart for Jordan Aviation Airline including 
+ALL these departments:
+
+TECHNICAL DEPARTMENTS:
+- Flight Operations (Pilots, Dispatchers, Crew Scheduling)
+- Maintenance & Engineering (MRO, Line Maintenance, Heavy Maintenance)
+- Safety Management System (SMS)
+- Quality Assurance
+- Ground Operations
+- Cabin Crew & Inflight Services
+
+NON-TECHNICAL DEPARTMENTS:
+- Human Resources (HR)
+- Information Technology (IT)
+- Finance & Accounting
+- Commercial & Sales
+- Marketing & Communications
+- Legal & Compliance
+- Customer Service
+- Procurement & Supply Chain
+- AI & Digital Transformation Department
+- Corporate Communications
+- Executive Office (Chairman, CEO, COO, CFO, CCO)
+
+## PART 2 — FOR EACH DEPARTMENT GENERATE:
+1. Department organizational chart showing all positions and reporting lines
+2. Job descriptions for every position including:
+   - Job title
+   - Reports to
+   - Purpose of role
+   - Key responsibilities (minimum 8)
+   - Required qualifications
+   - Required experience
+   - Key performance indicators (KPIs)
+3. Standard Operating Procedures (SOPs) for the department including:
+   - Purpose
+   - Scope
+   - Responsibilities
+   - Step by step procedures
+   - Safety requirements (where applicable)
+   - CARC compliance notes
+
+## PART 3 — INTERACTIVE WEBSITE
+Build a professional website with:
+- Beautiful homepage with Jordan Aviation branding
+- Interactive company-wide organizational chart (clickable)
+- When user clicks any department it drills down into that department
+- When user clicks any position it shows the full job description
+- Department pages showing SOPs
+- Search functionality to find any position or department
+- Professional airline industry design (dark blue and gold colors)
+- Responsive design for mobile and desktop
+- Navigation menu for all departments
+- Table of contents page
+
+## PART 4 — DOWNLOADABLE BOOKLET
+Generate a downloadable PDF booklet that includes:
+- Professional cover page with Jordan Aviation logo area and branding
+- Table of contents with page numbers
+- Executive summary
+- Company-wide organizational chart
+- Each department section with:
+  * Department org chart
+  * All job descriptions
+  * All SOPs
+- Appendices with CARC compliance references
+- Professional formatting throughout
+- The PDF should be downloadable with one click from the website
+
+## TECHNICAL REQUIREMENTS:
+- Frontend: React.js with professional styling
+- Backend: Node.js or Python Flask
+- PDF Generation: Use pdfkit, jsPDF, or puppeteer
+- Org Chart: Use D3.js or similar for interactive charts
+- Make it fully responsive
+- Host everything in one Replit project
+- Read and use the content from my GitHub repository files as reference
+
+## DESIGN REQUIREMENTS:
+- Colors: Dark navy blue (#1a2744), Gold (#c9a84c), White
+- Professional airline industry look
+- Jordan Aviation Airline branding throughout
+- Clean modern design
+- Easy navigation
+
+## OUTPUT:
+1. A fully working website
+2. A downloadable PDF booklet
+3. All org charts interactive and clickable
+4. All job descriptions complete and professional
+5. All SOPs complete and CARC compliant
+
+Please start by reading my GitHub repository files then build this 
+complete system step by step.

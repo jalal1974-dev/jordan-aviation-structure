@@ -1,48 +1,76 @@
-# Jordan Aviation Document Repository
+# Jordan Aviation Airline — Organization Structure System
 
-A web-based document viewer for Jordan Aviation organizational, operational, and compliance documents.
+A comprehensive full-stack web application for Jordan Aviation Airline's organizational structure, job descriptions, SOPs, and interactive org charts.
 
 ## Architecture
 
-- **Runtime**: Node.js 20
-- **Framework**: Express.js
-- **Port**: 5000 (0.0.0.0)
-- **Frontend**: Vanilla HTML/CSS/JS served as static files from `public/`
+- **Frontend**: React 19 + Vite 8 (port 5000)
+- **Backend**: Express.js API (port 3001)
+- **Run command**: `npm run dev` (uses concurrently to start both)
 
 ## Project Structure
 
 ```
-server.js          - Express server (serves files + API)
-public/index.html  - Single-page document browser UI
-package.json       - Node.js dependencies
+server.js              - Express API server (port 3001) — serves document files & /api/documents
+vite.config.js         - Vite dev server config (port 5000, proxies /api & /files to 3001)
+index.html             - React app entry point
+src/
+  App.jsx              - React router app
+  index.css            - Global CSS (navy/gold design system)
+  main.jsx             - React entry point
+  data/
+    orgData.js         - ALL org data (departments, positions, job descriptions, SOPs)
+  components/
+    Navbar.jsx         - Top navigation with department dropdown
+    Footer.jsx         - Footer with links
+    JobDescModal.jsx   - Full job description modal overlay
+    SOPModal.jsx       - SOP detail modal overlay
+    PDFGenerator.jsx   - jsPDF-based downloadable booklet generator
+  pages/
+    HomePage.jsx       - Hero, stats, executive section, department cards
+    OrgChartPage.jsx   - Interactive SVG company-wide org chart (pan/zoom/click)
+    DepartmentPage.jsx - Department detail with tabs (overview/positions/SOPs)
+    SearchPage.jsx     - Full-text search across departments, positions, SOPs
+    TableOfContents.jsx - Structured TOC with page references
 ```
 
-### Document Folders
+## Content Coverage
 
-| Folder | Contents |
-|---|---|
-| Root | General org charts and SOPs |
-| `jav schadule and hr/` | HR, schedule, and digital transformation plans |
-| `structure 1/` | Airline & MRO SOPs (Arabic & English) |
-| `structure 2/` | Ops manuals, certificates, compliance docs |
+### 16 Departments
+**Technical:** Flight Operations, Maintenance & Engineering, Safety SMS, Quality Assurance, Ground Operations, Cabin Crew & Inflight  
+**Non-Technical:** HR, IT, Finance & Accounting, Commercial & Sales, Marketing, Legal & Compliance, Customer Service, Procurement, AI & Digital Transformation, Corporate Communications
+
+### For Each Department
+- Department description and org structure
+- All positions with full job descriptions (title, reports to, purpose, 8+ responsibilities, qualifications, experience, KPIs)
+- Standard Operating Procedures (SOPs) with: purpose, scope, responsibilities, step-by-step procedures, safety requirements, CARC compliance notes
+
+## Design
+- Colors: Navy (#1a2744), Gold (#c9a84c), White
+- Responsive for mobile and desktop
+- Professional airline industry look
 
 ## Features
-
-- Browse all documents by folder
-- Search by name
-- Filter by file type (PDF, DOCX, PPTX, ZIP)
-- In-browser PDF and image preview
-- Download any document
-
-## API
-
-- `GET /api/documents` — Returns list of all documents (name, folder, path, ext, size)
-- `GET /files/<path>` — Serve a document file (security-checked)
+- Interactive company-wide org chart (pan, zoom, click to navigate)
+- Department drill-down pages with tab navigation
+- Click any position to view full job description modal
+- Click any SOP to view complete procedure modal
+- Search across all content (departments, positions, SOPs)
+- One-click PDF booklet download with complete org structure and SOPs
+- Table of Contents page
 
 ## Running
 
 ```bash
-node server.js
+npm run dev
 ```
 
-Server starts on port 5000.
+Starts both Express API (port 3001) and Vite dev server (port 5000).
+
+## Document Files
+
+The original Jordan Aviation documents are also served from the API:
+- Root: General org charts
+- `jav schadule and hr/`: HR and digital plans
+- `structure 1/`: Airline & MRO SOPs
+- `structure 2/`: Operations and compliance docs
