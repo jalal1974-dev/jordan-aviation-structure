@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jordan Aviation - Document Repository</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f0f4f8;
+      color: #2d3748;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+      color: white;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    header p {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .logo-circle {
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 20px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 16px;
+      border: 1px solid #cbd5e0;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      background: white;
+      transition: border-color 0.2s;
+    }
+
+    .search-box:focus {
+      border-color: #2b6cb0;
+      box-shadow: 0 0 0 3px rgba(43,108,176,0.1);
+    }
+
+    .filter-select {
+      padding: 10px 14px;
+      border: 1px solid #cbd5e0;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      background: white;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .stats {
+      font-size: 0.85rem;
+      color: #718096;
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    .folder-section {
+      margin-bottom: 28px;
+    }
+
+    .folder-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d3748;
+      padding: 8px 0;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 14px;
+    }
+
+    .folder-icon { font-size: 1.2rem; }
+    .folder-count {
+      margin-left: auto;
+      font-size: 0.8rem;
+      background: #e2e8f0;
+      color: #4a5568;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .doc-card {
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border-color: #bee3f8;
+    }
+
+    .doc-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .doc-info { flex: 1; min-width: 0; }
+
+    .doc-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2d3748;
+      word-break: break-word;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .doc-meta {
+      font-size: 0.75rem;
+      color: #a0aec0;
+      display: flex;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-pdf { background: #fed7d7; color: #c53030; }
+    .badge-docx { background: #bee3f8; color: #2b6cb0; }
+    .badge-pptx { background: #feebc8; color: #c05621; }
+    .badge-png, .badge-jpeg, .badge-jfif { background: #c6f6d5; color: #276749; }
+    .badge-zip { background: #e9d8fd; color: #6b46c1; }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #a0aec0;
+    }
+
+    .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+    .empty-state p { font-size: 1rem; }
+
+    .pdf-preview-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pdf-preview-modal.open { display: flex; }
+
+    .pdf-modal-inner {
+      background: white;
+      border-radius: 12px;
+      width: 90vw;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .pdf-modal-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f7fafc;
+    }
+
+    .pdf-modal-title {
+      flex: 1;
+      font-size: 0.95rem;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .btn {
+      padding: 7px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+
+    .btn-primary { background: #2b6cb0; color: white; }
+    .btn-primary:hover { background: #2c5282; }
+    .btn-ghost { background: #e2e8f0; color: #2d3748; }
+    .btn-ghost:hover { background: #cbd5e0; }
+
+    .pdf-modal-body { flex: 1; overflow: hidden; }
+    .pdf-modal-body iframe { width: 100%; height: 100%; border: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 14px 16px; }
+      .container { padding: 16px; }
+      .doc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-circle">✈</div>
+    <div>
+      <h1>Jordan Aviation</h1>
+      <p>Document Repository</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="toolbar">
+      <input class="search-box" type="text" id="search" placeholder="Search documents..." />
+      <select class="filter-select" id="typeFilter">
+        <option value="">All Types</option>
+        <option value="pdf">PDF</option>
+        <option value="docx">Word (DOCX)</option>
+        <option value="pptx">PowerPoint (PPTX)</option>
+        <option value="zip">ZIP</option>
+      </select>
+      <select class="filter-select" id="folderFilter">
+        <option value="">All Folders</option>
+      </select>
+      <span class="stats" id="stats"></span>
+    </div>
+
+    <div id="content"></div>
+  </div>
+
+  <div class="pdf-preview-modal" id="previewModal">
+    <div class="pdf-modal-inner">
+      <div class="pdf-modal-header">
+        <span class="pdf-modal-title" id="modalTitle"></span>
+        <a id="modalDownload" class="btn btn-primary" download>Download</a>
+        <button class="btn btn-ghost" id="closeModal">Close</button>
+      </div>
+      <div class="pdf-modal-body">
+        <iframe id="modalFrame" src=""></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ICONS = {
+      pdf: '📄',
+      docx: '📝',
+      doc: '📝',
+      pptx: '📊',
+      ppt: '📊',
+      png: '🖼️',
+      jpeg: '🖼️',
+      jfif: '🖼️',
+      jpg: '🖼️',
+      zip: '📦',
+    };
+
+    const VIEWABLE = ['pdf', 'png', 'jpeg', 'jfif', 'jpg'];
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    let allDocs = [];
+
+    async function loadDocs() {
+      try {
+        const res = await fetch('/api/documents');
+        allDocs = await res.json();
+        populateFolderFilter();
+        render();
+      } catch (e) {
+        document.getElementById('content').innerHTML = '<div class="empty-state"><div class="icon">⚠️</div><p>Failed to load documents.</p></div>';
+      }
+    }
+
+    function populateFolderFilter() {
+      const folders = [...new Set(allDocs.map(d => d.folder))].sort();
+      const sel = document.getElementById('folderFilter');
+      for (const f of folders) {
+        const opt = document.createElement('option');
+        opt.value = f;
+        opt.textContent = f;
+        sel.appendChild(opt);
+      }
+    }
+
+    function getFiltered() {
+      const q = document.getElementById('search').value.toLowerCase();
+      const type = document.getElementById('typeFilter').value;
+      const folder = document.getElementById('folderFilter').value;
+      return allDocs.filter(d => {
+        if (q && !d.name.toLowerCase().includes(q) && !d.folder.toLowerCase().includes(q)) return false;
+        if (type && d.ext !== type) return false;
+        if (folder && d.folder !== folder) return false;
+        return true;
+      });
+    }
+
+    function render() {
+      const docs = getFiltered();
+      document.getElementById('stats').textContent = `${docs.length} document${docs.length !== 1 ? 's' : ''}`;
+
+      const content = document.getElementById('content');
+      if (!docs.length) {
+        content.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><p>No documents found.</p></div>';
+        return;
+      }
+
+      const byFolder = {};
+      for (const d of docs) {
+        if (!byFolder[d.folder]) byFolder[d.folder] = [];
+        byFolder[d.folder].push(d);
+      }
+
+      const folderOrder = ['Root', 'jav schadule and hr', 'structure 1', 'structure 2'];
+      const sortedFolders = Object.keys(byFolder).sort((a, b) => {
+        const ia = folderOrder.indexOf(a);
+        const ib = folderOrder.indexOf(b);
+        if (ia === -1 && ib === -1) return a.localeCompare(b);
+        if (ia === -1) return 1;
+        if (ib === -1) return -1;
+        return ia - ib;
+      });
+
+      const folderLabels = {
+        'Root': '📁 General Documents',
+        'jav schadule and hr': '📁 Schedule & HR',
+        'structure 1': '📁 Structure 1 — Airline & MRO SOPs',
+        'structure 2': '📁 Structure 2 — Operations & Compliance',
+      };
+
+      content.innerHTML = sortedFolders.map(folder => {
+        const items = byFolder[folder];
+        return `
+          <div class="folder-section">
+            <div class="folder-header">
+              <span>${folderLabels[folder] || ('📁 ' + folder)}</span>
+              <span class="folder-count">${items.length}</span>
+            </div>
+            <div class="doc-grid">
+              ${items.map(d => {
+                const icon = ICONS[d.ext] || '📄';
+                const url = `/files/${encodeURIComponent(d.path).replace(/%2F/g, '/')}`;
+                const viewable = VIEWABLE.includes(d.ext);
+                return `
+                  <div class="doc-card" onclick="openDoc('${encodeURIComponent(d.path).replace(/%2F/g, '/')}', '${d.name.replace(/'/g, "\\'")}', '${d.ext}')">
+                    <span class="doc-icon">${icon}</span>
+                    <div class="doc-info">
+                      <div class="doc-name">${d.name}</div>
+                      <div class="doc-meta">
+                        <span class="badge badge-${d.ext}">${d.ext.toUpperCase()}</span>
+                        <span>${formatSize(d.size)}</span>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openDoc(encodedPath, name, ext) {
+      const url = `/files/${encodedPath}`;
+      const viewable = ['pdf', 'png', 'jpeg', 'jfif', 'jpg'].includes(ext);
+
+      if (viewable) {
+        document.getElementById('modalTitle').textContent = name;
+        document.getElementById('modalDownload').href = url;
+        document.getElementById('modalDownload').download = name;
+        document.getElementById('modalFrame').src = url;
+        document.getElementById('previewModal').classList.add('open');
+      } else {
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = name;
+        a.click();
+      }
+    }
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('previewModal').classList.remove('open');
+      document.getElementById('modalFrame').src = '';
+    });
+
+    document.getElementById('previewModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        document.getElementById('previewModal').classList.remove('open');
+        document.getElementById('modalFrame').src = '';
+      }
+    });
+
+    document.getElementById('search').addEventListener('input', render);
+    document.getElementById('typeFilter').addEventListener('change', render);
+    document.getElementById('folderFilter').addEventListener('change', render);
+
+    loadDocs();
+  </script>
+</body>
+</html>
