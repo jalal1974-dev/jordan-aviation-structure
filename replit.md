@@ -1,6 +1,6 @@
 # Jordan Aviation Airline — Organization Structure System
 
-A comprehensive full-stack web application for Jordan Aviation Airline's organizational structure, job descriptions, SOPs, and interactive org charts.
+A comprehensive full-stack web application for Jordan Aviation Airline's organizational structure, job descriptions, SOPs, and interactive org charts — based on the actual GOM Rev 03 (General Operating Manual, Issue 04, Nov 2024).
 
 ## Architecture
 
@@ -11,66 +11,104 @@ A comprehensive full-stack web application for Jordan Aviation Airline's organiz
 ## Project Structure
 
 ```
-server.js              - Express API server (port 3001) — serves document files & /api/documents
+server.js              - Express API server (port 3001)
 vite.config.js         - Vite dev server config (port 5000, proxies /api & /files to 3001)
 index.html             - React app entry point
 src/
   App.jsx              - React router app
   index.css            - Global CSS (navy/gold design system)
   main.jsx             - React entry point
+  context/
+    LanguageContext.jsx - EN/AR language toggle with RTL support
   data/
-    orgData.js         - ALL org data (departments, positions, job descriptions, SOPs)
+    orgData.js         - ALL org data sourced from actual GOM Rev 03 (departments, positions, JDs, SOPs)
   components/
     Navbar.jsx         - Top navigation with department dropdown
     Footer.jsx         - Footer with links
+    DepartmentOrgChart.jsx - SVG tree chart per department
     JobDescModal.jsx   - Full job description modal overlay
     SOPModal.jsx       - SOP detail modal overlay
     PDFGenerator.jsx   - jsPDF-based downloadable booklet generator
   pages/
-    HomePage.jsx       - Hero, stats, executive section, department cards
+    HomePage.jsx       - Hero, stats, executive section, department cards by category
     OrgChartPage.jsx   - Interactive SVG company-wide org chart (pan/zoom/click)
-    DepartmentPage.jsx - Department detail with tabs (overview/positions/SOPs)
+    DepartmentPage.jsx - Department detail with tabs (Org Chart/Overview/Positions/SOPs) + Print button
     SearchPage.jsx     - Full-text search across departments, positions, SOPs
     TableOfContents.jsx - Structured TOC with page references
+    EmployeeDirectoryPage.jsx - Searchable/filterable directory of all positions
 ```
 
-## Content Coverage
+## Data Source
 
-### 16 Departments
-**Technical:** Flight Operations, Maintenance & Engineering, Safety SMS, Quality Assurance, Ground Operations, Cabin Crew & Inflight  
-**Non-Technical:** HR, IT, Finance & Accounting, Commercial & Sales, Marketing, Legal & Compliance, Customer Service, Procurement, AI & Digital Transformation, Corporate Communications
+All organizational data is sourced from the **actual Jordan Aviation General Operating Manual (GOM Rev 03, Issue 04, Nov 2024)**, specifically:
+- **Section 1.8.1** — Company Organization charts
+- **Section 1.8.2** — Job Descriptions (1.8.2.1 through 1.8.2.21)
+- Verified post holder names from GOM distribution list
 
-### For Each Department
-- Department description and org structure
-- All positions with full job descriptions (title, reports to, purpose, 8+ responsibilities, qualifications, experience, KPIs)
-- Standard Operating Procedures (SOPs) with: purpose, scope, responsibilities, step-by-step procedures, safety requirements, CARC compliance notes
+## Organizational Structure (from GOM)
+
+### Top Level
+- Chairman / Board of Directors
+- President & CEO (reports to Chairman)
+- General Manager / Accountable Manager — Capt. Ali Alfaour (reports to President & CEO)
+
+### Post Holders (report to Accountable Manager)
+- Head of Flight Operations — Capt. Adnan Takrouri
+- Head of Training (Crew) — Capt. Ahmad AbuDiab
+- Head of Ground Operations — Mr. Munieer Abdelsamad
+- Head of Engineering / CAMO Manager — Eng. Abdelkarim Kheshman
+- Quality Manager (Nominated)
+- SMS Manager / Head of Safety (Nominated)
+- AVSEC Manager / Head of Security (Nominated)
+
+### Also reporting to Accountable Manager
+- IOSA Compliance Manager
+
+### Reporting to President & CEO / General Manager
+- CFO (Chief Financial Officer)
+- CCO (Chief Commercial Officer)
+- Legal Affairs
+- Consultants
+- Advisor UN Affairs
+- Office Manager / Secretary
+- Public Relations
+
+## Departments (11 total)
+
+**Technical Operations (4):** Flight Operations, Crew Training, Ground Operations, Engineering & CAMO
+
+**Safety & Compliance (4):** Quality Assurance, Safety Management (SMS), Aviation Security (AVSEC), IOSA Compliance
+
+**Commercial (1):** Commercial (CCO-led)
+
+**Corporate Support (3):** Finance, Legal Affairs, Public Relations, General Management Office
 
 ## Design
 - Colors: Navy (#1a2744), Gold (#c9a84c), White
 - Responsive for mobile and desktop
-- Professional airline industry look
+- Arabic/RTL language toggle
+- Interactive SVG org charts with click-to-view job descriptions
 
-## Features
-- Interactive company-wide org chart (pan, zoom, click to navigate)
-- Department drill-down pages with tab navigation
-- Click any position to view full job description modal
-- Click any SOP to view complete procedure modal
-- Search across all content (departments, positions, SOPs)
-- One-click PDF booklet download with complete org structure and SOPs
-- Table of Contents page
+## Key Features
+- Interactive org chart per department (SVG tree)
+- Company-wide org chart (pan/zoom)
+- Employee Directory with search/filter/sort
+- Job description modals
+- SOP detail modals
+- Print Department (formatted page)
+- Print Full Booklet (HTML print layout)
+- PDF Generator (jsPDF with 2026 cover)
+- Arabic RTL language toggle
+- Full-text search across all content
 
-## Running
+## Fleet (per GOM)
+- Boeing B737-300: JY-JAD, JY-JAX
+- Boeing B767-200: JY-JAL
+- Airbus A320-211: JY-JAC, JY-JAT
+- Airbus A330-200: JY-JVA, JY-JVB
 
-```bash
-npm run dev
-```
-
-Starts both Express API (port 3001) and Vite dev server (port 5000).
-
-## Document Files
-
-The original Jordan Aviation documents are also served from the API:
-- Root: General org charts
-- `jav schadule and hr/`: HR and digital plans
-- `structure 1/`: Airline & MRO SOPs
-- `structure 2/`: Operations and compliance docs
+## Regulatory
+- CARC AOC: C 002 (valid to 23-02-2027)
+- ICAO prefix: JAV
+- IATA prefix: R5
+- Callsign: JORDANAVIATION

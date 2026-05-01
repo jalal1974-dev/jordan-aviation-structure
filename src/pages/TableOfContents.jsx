@@ -56,21 +56,48 @@ export default function TableOfContents() {
             ))}
           </TOCSection>
 
-          <TOCSection title="4. Non-Technical Departments" page={80}>
-            {DEPARTMENTS.filter(d => d.category === 'non-technical').map((dept, di) => (
+          <TOCSection title="4. Safety & Compliance Departments" page={80}>
+            {DEPARTMENTS.filter(d => d.category === 'safety-compliance').map((dept, di) => (
               <div key={dept.id} style={{ marginBottom: 16 }}>
-                <TOCEntry label={`${di + 4}.1 ${dept.icon} ${dept.title}`} page={81 + di * 6} linkTo={`/department/${dept.id}`} isSection />
+                <TOCEntry label={`4.${di + 1} ${dept.icon} ${dept.title}`} page={81 + di * 6} linkTo={`/department/${dept.id}`} isSection />
                 <div style={{ paddingLeft: 20 }}>
                   <TOCEntry label="Positions & Job Descriptions" page={82 + di * 6} />
                   {dept.positions.map((p, pi) => (
                     <TOCEntry key={p.id} label={p.title} page={83 + di * 6 + pi} indent sublabel={`Reports to: ${p.reportsTo}`} />
+                  ))}
+                  {dept.sops.length > 0 && <TOCEntry label="Standard Operating Procedures" page={84 + di * 6 + dept.positions.length} />}
+                </div>
+              </div>
+            ))}
+          </TOCSection>
+
+          <TOCSection title="5. Commercial Departments" page={105}>
+            {DEPARTMENTS.filter(d => d.category === 'commercial').map((dept, di) => (
+              <div key={dept.id} style={{ marginBottom: 16 }}>
+                <TOCEntry label={`5.${di + 1} ${dept.icon} ${dept.title}`} page={106 + di * 5} linkTo={`/department/${dept.id}`} isSection />
+                <div style={{ paddingLeft: 20 }}>
+                  {dept.positions.map((p, pi) => (
+                    <TOCEntry key={p.id} label={p.title} page={107 + di * 5 + pi} indent sublabel={`Reports to: ${p.reportsTo}`} />
                   ))}
                 </div>
               </div>
             ))}
           </TOCSection>
 
-          <TOCSection title="5. Appendices" page={130}>
+          <TOCSection title="6. Corporate Support Departments" page={115}>
+            {DEPARTMENTS.filter(d => d.category === 'support').map((dept, di) => (
+              <div key={dept.id} style={{ marginBottom: 16 }}>
+                <TOCEntry label={`6.${di + 1} ${dept.icon} ${dept.title}`} page={116 + di * 4} linkTo={`/department/${dept.id}`} isSection />
+                <div style={{ paddingLeft: 20 }}>
+                  {dept.positions.map((p, pi) => (
+                    <TOCEntry key={p.id} label={p.title} page={117 + di * 4 + pi} indent sublabel={`Reports to: ${p.reportsTo}`} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </TOCSection>
+
+          <TOCSection title="7. Appendices" page={130}>
             <TOCEntry label="A — CARC Regulatory References" page={131} />
             <TOCEntry label="B — IATA Applicable Standards" page={133} />
             <TOCEntry label="C — ICAO Annex References" page={135} />

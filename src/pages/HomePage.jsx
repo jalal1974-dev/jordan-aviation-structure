@@ -7,7 +7,9 @@ import { useLang } from '../context/LanguageContext.jsx';
 export default function HomePage() {
   const { t } = useLang();
   const technical = DEPARTMENTS.filter(d => d.category === 'technical');
-  const nonTechnical = DEPARTMENTS.filter(d => d.category === 'non-technical');
+  const safetyCompliance = DEPARTMENTS.filter(d => d.category === 'safety-compliance');
+  const commercial = DEPARTMENTS.filter(d => d.category === 'commercial');
+  const support = DEPARTMENTS.filter(d => d.category === 'support');
 
   return (
     <div>
@@ -16,7 +18,9 @@ export default function HomePage() {
       <div className="container" style={{ padding: '60px 24px' }}>
         <ExecutiveSection />
         <DepartmentsSection title={t.sections.technical} departments={technical} />
-        <DepartmentsSection title={t.sections.nonTechnical} departments={nonTechnical} />
+        <DepartmentsSection title="Safety & Compliance" departments={safetyCompliance} />
+        <DepartmentsSection title="Commercial" departments={commercial} />
+        <DepartmentsSection title="Corporate Support" departments={support} />
         <DownloadSection />
       </div>
     </div>
@@ -142,7 +146,7 @@ function DepartmentsSection({ title, departments }) {
               <div>
                 <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#1a2744', marginBottom: 4 }}>{dept.title}</h3>
                 <span className={`badge badge-${dept.category === 'technical' ? 'technical' : 'non-technical'}`}>
-                  {dept.category === 'technical' ? t.common.technical : t.common.nonTechnical}
+                  {dept.category === 'technical' ? 'Technical' : dept.category === 'safety-compliance' ? 'Safety & Compliance' : dept.category === 'commercial' ? 'Commercial' : 'Support'}
                 </span>
               </div>
             </div>
@@ -213,10 +217,14 @@ function DownloadSection() {
       <div class="toc">
         <h2>TABLE OF CONTENTS</h2>
         <div class="toc-item"><span>1. Executive Leadership</span><span>—</span></div>
-        <div class="toc-item"><span>2. Technical Departments</span><span>—</span></div>
+        <div class="toc-item"><span>2. Technical Operations</span><span>—</span></div>
         ${DEPARTMENTS.filter(d => d.category === 'technical').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>2.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
-        <div class="toc-item"><span>3. Non-Technical Departments</span><span>—</span></div>
-        ${DEPARTMENTS.filter(d => d.category === 'non-technical').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>3.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
+        <div class="toc-item"><span>3. Safety & Compliance</span><span>—</span></div>
+        ${DEPARTMENTS.filter(d => d.category === 'safety-compliance').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>3.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
+        <div class="toc-item"><span>4. Commercial</span><span>—</span></div>
+        ${DEPARTMENTS.filter(d => d.category === 'commercial').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>4.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
+        <div class="toc-item"><span>5. Corporate Support</span><span>—</span></div>
+        ${DEPARTMENTS.filter(d => d.category === 'support').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>5.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
         <div class="toc-item"><span>4. Appendices & Regulatory References</span><span>—</span></div>
       </div>
 
