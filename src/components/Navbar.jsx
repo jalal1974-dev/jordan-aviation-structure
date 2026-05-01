@@ -32,7 +32,7 @@ export default function Navbar() {
   };
 
   const technical = DEPARTMENTS.filter(d => d.category === 'technical');
-  const nonTechnical = DEPARTMENTS.filter(d => d.category === 'non-technical');
+  const nonTechnical = DEPARTMENTS.filter(d => d.category !== 'technical');
 
   return (
     <nav style={{
@@ -78,11 +78,11 @@ export default function Navbar() {
                 position: 'absolute', top: '100%', insetInlineStart: -20,
                 background: 'white', borderRadius: 12, padding: '16px',
                 boxShadow: '0 20px 60px rgba(0,0,0,0.2)',
-                width: 540, display: 'grid', gridTemplateColumns: '1fr 1fr',
-                gap: 8, border: '1px solid #e2e8f0',
+                width: 620, display: 'grid', gridTemplateColumns: '1fr 1fr',
+                gap: 12, border: '1px solid #e2e8f0',
               }}>
                 <div>
-                  <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: 1, padding: '4px 8px', marginBottom: 4 }}>{t.nav.technical}</div>
+                  <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#1a2744', textTransform: 'uppercase', letterSpacing: 1, padding: '4px 8px', marginBottom: 4, borderBottom: '2px solid #1a2744' }}>{t.nav.technical}</div>
                   {technical.map(d => (
                     <Link key={d.id} to={`/department/${d.id}`} style={{
                       display: 'flex', alignItems: 'center', gap: 8, padding: '8px',
@@ -97,19 +97,21 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: 1, padding: '4px 8px', marginBottom: 4 }}>{t.nav.nonTechnical}</div>
-                  {nonTechnical.map(d => (
-                    <Link key={d.id} to={`/department/${d.id}`} style={{
-                      display: 'flex', alignItems: 'center', gap: 8, padding: '8px',
-                      borderRadius: 8, color: '#334155', fontSize: '0.85rem', fontWeight: 500,
-                      transition: 'background 0.15s', textDecoration: 'none',
-                    }}
-                      onMouseEnter={e => e.currentTarget.style.background = '#f1f5f9'}
-                      onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-                    >
-                      <span>{d.icon}</span> {d.title}
-                    </Link>
-                  ))}
+                  <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#c9a84c', textTransform: 'uppercase', letterSpacing: 1, padding: '4px 8px', marginBottom: 4, borderBottom: '2px solid #c9a84c' }}>{t.nav.nonTechnical}</div>
+                  <div style={{ maxHeight: 340, overflowY: 'auto' }}>
+                    {nonTechnical.map(d => (
+                      <Link key={d.id} to={`/department/${d.id}`} style={{
+                        display: 'flex', alignItems: 'center', gap: 8, padding: '8px',
+                        borderRadius: 8, color: '#334155', fontSize: '0.85rem', fontWeight: 500,
+                        transition: 'background 0.15s', textDecoration: 'none',
+                      }}
+                        onMouseEnter={e => e.currentTarget.style.background = '#f1f5f9'}
+                        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                      >
+                        <span>{d.icon}</span> {d.title}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
