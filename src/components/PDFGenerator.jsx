@@ -146,15 +146,24 @@ export default function PDFGenerator({ style }) {
 
       const tocItems = [
         { num: '1.', title: 'Company Overview & Executive Leadership', key: 'exec', major: true },
-        { num: '2.', title: 'Technical Departments', key: null, major: true },
+        { num: '2.', title: 'Company Organization Chart (Full Hierarchy)', key: 'company-org-chart', major: true },
+        { num: '3.', title: 'Technical Departments', key: null, major: true },
         ...DEPARTMENTS.filter(d => d.category === 'technical').map((d, i) => ({
-          num: `2.${i+1}`, title: d.title, key: `dept-${d.id}`, major: false,
-        })),
-        { num: '3.', title: 'Non-Technical Departments', key: null, major: true },
-        ...DEPARTMENTS.filter(d => d.category !== 'technical').map((d, i) => ({
           num: `3.${i+1}`, title: d.title, key: `dept-${d.id}`, major: false,
         })),
-        { num: '4.', title: 'Appendix - Regulatory References', key: 'appendix', major: true },
+        { num: '4.', title: 'Safety & Compliance Departments', key: null, major: true },
+        ...DEPARTMENTS.filter(d => d.category === 'safety-compliance').map((d, i) => ({
+          num: `4.${i+1}`, title: d.title, key: `dept-${d.id}`, major: false,
+        })),
+        { num: '5.', title: 'Commercial Departments', key: null, major: true },
+        ...DEPARTMENTS.filter(d => d.category === 'commercial').map((d, i) => ({
+          num: `5.${i+1}`, title: d.title, key: `dept-${d.id}`, major: false,
+        })),
+        { num: '6.', title: 'Corporate Support Departments', key: null, major: true },
+        ...DEPARTMENTS.filter(d => d.category === 'support').map((d, i) => ({
+          num: `6.${i+1}`, title: d.title, key: `dept-${d.id}`, major: false,
+        })),
+        { num: '7.', title: 'Appendix - Regulatory References', key: 'appendix', major: true },
       ];
 
       const tocSnapshot = [];
@@ -243,6 +252,149 @@ export default function PDFGenerator({ style }) {
           sp(pos.kpis.join('  |  '), CW - 10).slice(0, 2).forEach(l => { tx(l, M + 10, y); y += 4.5; });
         }
         y += 5; hline(y); y += 8;
+      });
+
+      // ── COMPANY-WIDE ORG CHART SECTION ──────────────
+      setProgress('Company org chart...');
+      addPage('company-org-chart');
+      sectionHeader('COMPANY ORGANIZATION CHART',
+        'Full reporting hierarchy — Board of Directors to all positions');
+
+      // Intro note
+      sf(8.5, 'normal', GRAY);
+      const orgIntro = 'This chart shows the complete reporting structure of Jordan Aviation Airline across all departments and positions, in accordance with the employee directory (دليل الموظفين) and AOC C002.';
+      sp(orgIntro, CW).forEach(l => { checkY(6); tx(l, M, y); y += 5; });
+      y += 6;
+
+      // -- Draw hierarchy levels --
+      const drawBox = (label, bx, by, bw, bh, bgColor, txtColor, fontSize = 7.5) => {
+        fr(bx, by, bw, bh, bgColor);
+        doc.setDrawColor(...GOLD); doc.setLineWidth(0.3);
+        doc.rect(bx, by, bw, bh);
+        sf(fontSize, 'bold', txtColor);
+        const lines = sp(label, bw - 4);
+        lines.slice(0, 2).forEach((l, li) => {
+          tx(l, bx + bw / 2, by + bh / 2 + (li - (Math.min(lines.length,2)-1)/2) * (fontSize * 0.42), { align: 'center' });
+        });
+      };
+
+      const vline = (x, y1, y2) => {
+        doc.setDrawColor(...GOLD); doc.setLineWidth(0.4);
+        doc.line(x, y1, x, y2);
+      };
+      const hconnect = (x1, x2, cy) => {
+        doc.setDrawColor(...GOLD); doc.setLineWidth(0.4);
+        doc.line(x1, cy, x2, cy);
+      };
+
+      const boxH = 9;
+      const midX = W / 2;
+
+      // Level 0 — Board
+      checkY(180);
+      drawBox('Board of Directors', midX - 32, y, 64, boxH, NAVY2, WHITE, 7.5);
+      vline(midX, y + boxH, y + boxH + 5);
+      y += boxH + 5;
+
+      // Level 1 — Chairman
+      drawBox('Chairman of the Board', midX - 32, y, 64, boxH, NAVY, WHITE, 7.5);
+      vline(midX, y + boxH, y + boxH + 5);
+      y += boxH + 5;
+
+      // Level 2 — CEO
+      fr(midX - 36, y, 72, boxH + 2, GOLD);
+      doc.setDrawColor(...NAVY); doc.setLineWidth(0.5); doc.rect(midX - 36, y, 72, boxH + 2);
+      sf(8.5, 'bold', NAVY2); tx('President & CEO', midX, y + (boxH + 2) / 2 + 3, { align: 'center' });
+      const ceoBottom = y + boxH + 2;
+      vline(midX, ceoBottom, ceoBottom + 5);
+      y = ceoBottom + 5;
+
+      // CEO horizontal bar across all direct reports
+      const ceoReports = [
+        { label: 'Legal Affairs', x: M, w: 28, color: [92,72,39] },
+        { label: 'CFO', x: M + 31, w: 20, color: NAVY },
+        { label: 'Accountable\nManager (GM)', x: M + 54, w: 32, color: NAVY },
+        { label: 'CCO', x: M + 89, w: 20, color: NAVY },
+        { label: 'PR Office', x: M + 112, w: 24, color: [205,133,63] },
+        { label: 'HR', x: M + 139, w: 20, color: [139,69,19] },
+        { label: 'IT Dept', x: M + 162, w: 22, color: [30,107,158] },
+      ];
+
+      const rowY = y;
+      const centersX = ceoReports.map(r => r.x + r.w / 2);
+      hconnect(centersX[0], centersX[centersX.length - 1], rowY);
+      ceoReports.forEach((r, i) => {
+        vline(centersX[i], rowY, rowY + 4);
+        drawBox(r.label, r.x, rowY + 4, r.w, boxH + 1, r.color, WHITE, 6.5);
+      });
+
+      const ceoRow1Bottom = rowY + 4 + boxH + 1;
+      y = ceoRow1Bottom + 6;
+
+      // Second row CEO direct (overflow depts)
+      const ceoReports2 = [
+        { label: 'Admin / GMO', x: M + 112, w: 28, color: [112,128,144] },
+        { label: 'Procurement', x: M + 143, w: 28, color: [45,106,79] },
+        { label: 'Digital Trans.', x: M + 174, w: 28, color: [91,45,145] },
+      ];
+      ceoReports2.forEach(r => {
+        drawBox(r.label, r.x, y - 4, r.w, boxH, r.color, WHITE, 6.5);
+      });
+      y += boxH + 2;
+      hline(y, GOLD, 0.3); y += 6;
+
+      // Under AM — section
+      sf(8.5, 'bold', NAVY); tx('Accountable Manager (GM) — Direct Reports:', M, y); y += 6;
+      const amDepts = [
+        'Flight Operations (Post Holder)',
+        'Crew Training (Post Holder)',
+        'Ground Operations (Post Holder)',
+        'Engineering & CAMO (Post Holder)',
+        'Quality Assurance',
+        'Safety Management (SMS)',
+        'Aviation Security (AVSEC)',
+        'IOSA Compliance',
+      ];
+      const amCols = 4;
+      const amBoxW = (CW - (amCols - 1) * 3) / amCols;
+      amDepts.forEach((d, i) => {
+        const col = i % amCols;
+        const row = Math.floor(i / amCols);
+        const bx = M + col * (amBoxW + 3);
+        const by = y + row * (boxH + 3);
+        drawBox(d, bx, by, amBoxW, boxH, NAVY, WHITE, 6);
+      });
+      y += Math.ceil(amDepts.length / amCols) * (boxH + 3) + 6;
+      hline(y, GOLD, 0.3); y += 6;
+
+      // Under CFO
+      sf(8.5, 'bold', NAVY); tx('CFO — Direct Reports:', M, y); y += 6;
+      drawBox('Finance Department', M, y, 60, boxH, NAVY, WHITE, 6.5);
+      y += boxH + 6;
+
+      // Under CCO
+      sf(8.5, 'bold', NAVY); tx('CCO — Direct Reports:', M, y); y += 6;
+      ['Commercial', 'Customer Service'].forEach((d, i) => {
+        drawBox(d, M + i * 64, y, 60, boxH, [184,134,11], WHITE, 6.5);
+      });
+      y += boxH + 8;
+      hline(y, GOLD, 0.5); y += 10;
+
+      // Reporting notes
+      sf(8, 'bold', NAVY); tx('Reporting Structure Notes (per Employee Directory):', M, y); y += 6;
+      const notes = [
+        'Quality Assurance, Safety Management (SMS), Aviation Security (AVSEC), and IOSA Compliance report to the Accountable Manager (GM).',
+        'Flight Operations, Crew Training, Ground Operations, and Engineering & CAMO are headed by CARC-designated Post Holders reporting to the AM.',
+        'CFO and CCO are delegated Accountable Managers reporting to the General Manager (AM).',
+        'Public Relations, HR, IT, Admin/GMO, Procurement & Supply Chain, and Digital Transformation report directly to the President & CEO.',
+        'Legal Affairs and Consultants report to the Chairman / President & CEO.',
+      ];
+      notes.forEach(note => {
+        checkY(10);
+        doc.setFillColor(...GOLD); doc.circle(M + 3, y - 1.5, 0.9, 'F');
+        sf(7.5, 'normal', DGRAY);
+        sp(note, CW - 10).forEach((l, li) => { tx(l, M + 8, y + li * 4.5); });
+        y += 4.5 * Math.max(1, sp(note, CW - 10).length) + 3;
       });
 
       // ── DEPARTMENTS ──────────────────────────────────

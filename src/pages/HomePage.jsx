@@ -217,15 +217,80 @@ function DownloadSection() {
       <div class="toc">
         <h2>TABLE OF CONTENTS</h2>
         <div class="toc-item"><span>1. Executive Leadership</span><span>—</span></div>
-        <div class="toc-item"><span>2. Technical Operations</span><span>—</span></div>
-        ${DEPARTMENTS.filter(d => d.category === 'technical').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>2.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
-        <div class="toc-item"><span>3. Safety & Compliance</span><span>—</span></div>
-        ${DEPARTMENTS.filter(d => d.category === 'safety-compliance').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>3.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
-        <div class="toc-item"><span>4. Commercial</span><span>—</span></div>
-        ${DEPARTMENTS.filter(d => d.category === 'commercial').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>4.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
-        <div class="toc-item"><span>5. Corporate Support</span><span>—</span></div>
-        ${DEPARTMENTS.filter(d => d.category === 'support').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>5.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
-        <div class="toc-item"><span>4. Appendices & Regulatory References</span><span>—</span></div>
+        <div class="toc-item"><span>2. Company Organization Chart (Full Hierarchy)</span><span>—</span></div>
+        <div class="toc-item"><span>3. Technical Operations</span><span>—</span></div>
+        ${DEPARTMENTS.filter(d => d.category === 'technical').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>3.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
+        <div class="toc-item"><span>4. Safety & Compliance</span><span>—</span></div>
+        ${DEPARTMENTS.filter(d => d.category === 'safety-compliance').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>4.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
+        <div class="toc-item"><span>5. Commercial</span><span>—</span></div>
+        ${DEPARTMENTS.filter(d => d.category === 'commercial').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>5.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
+        <div class="toc-item"><span>6. Corporate Support</span><span>—</span></div>
+        ${DEPARTMENTS.filter(d => d.category === 'support').map((d, i) => `<div class="toc-item" style="padding-left:20px;"><span>6.${i + 1} ${d.title}</span><span>—</span></div>`).join('')}
+        <div class="toc-item"><span>7. Appendices & Regulatory References</span><span>—</span></div>
+      </div>
+
+      <div class="dept-section" style="page-break-before:always;">
+        <div class="dept-header" style="background:#1a2744;">
+          <h2 style="font-size:22px;">🌳 Company Organization Chart</h2>
+          <p>Full reporting hierarchy — Board of Directors through all departments and positions</p>
+          <p style="margin-top:8px;color:#c9a84c;font-weight:600;">Per Employee Directory (دليل الموظفين) · AOC C002</p>
+        </div>
+
+        <div style="font-family:monospace;font-size:11px;line-height:1.9;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px 24px;">
+          <div style="text-align:center;margin-bottom:12px;">
+            <span style="background:#0f1829;color:white;padding:4px 18px;border-radius:4px;font-size:13px;font-weight:700;">Board of Directors</span>
+          </div>
+          <div style="text-align:center;margin-bottom:12px;">↓</div>
+          <div style="text-align:center;margin-bottom:12px;">
+            <span style="background:#1a2744;color:white;padding:4px 18px;border-radius:4px;font-size:13px;font-weight:700;">Chairman of the Board</span>
+          </div>
+          <div style="text-align:center;margin-bottom:12px;">↓</div>
+          <div style="text-align:center;margin-bottom:18px;">
+            <span style="background:#c9a84c;color:#0f1829;padding:6px 24px;border-radius:4px;font-size:14px;font-weight:800;">President &amp; CEO</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:18px;">
+            <div style="text-align:center;">
+              <div style="color:#64748b;font-size:10px;">↓</div>
+              <div style="background:#1a2744;color:white;padding:6px 8px;border-radius:4px;font-size:11px;font-weight:700;">Accountable Manager (GM)</div>
+              <div style="padding-left:16px;margin-top:8px;text-align:left;">
+                ${DEPARTMENTS.filter(d => ['flight-operations','crew-training','ground-operations','engineering-camo','quality-assurance','safety-management','aviation-security','iosa-compliance'].includes(d.id)).map(d => `<div style="color:#475569;font-size:10px;margin-bottom:3px;">└ ${d.icon} ${d.title}</div>`).join('')}
+              </div>
+            </div>
+            <div style="text-align:center;">
+              <div style="color:#64748b;font-size:10px;">↓</div>
+              <div style="background:#1a2744;color:white;padding:6px 8px;border-radius:4px;font-size:11px;font-weight:700;">CFO</div>
+              <div style="padding-left:16px;margin-top:8px;text-align:left;">
+                ${DEPARTMENTS.filter(d => d.id === 'finance').map(d => `<div style="color:#475569;font-size:10px;margin-bottom:3px;">└ ${d.icon} ${d.title}</div>`).join('')}
+              </div>
+            </div>
+            <div style="text-align:center;">
+              <div style="color:#64748b;font-size:10px;">↓</div>
+              <div style="background:#1a2744;color:white;padding:6px 8px;border-radius:4px;font-size:11px;font-weight:700;">CCO</div>
+              <div style="padding-left:16px;margin-top:8px;text-align:left;">
+                ${DEPARTMENTS.filter(d => d.category === 'commercial').map(d => `<div style="color:#475569;font-size:10px;margin-bottom:3px;">└ ${d.icon} ${d.title}</div>`).join('')}
+              </div>
+            </div>
+            <div style="text-align:center;">
+              <div style="color:#64748b;font-size:10px;">↓ CEO Direct Reports</div>
+              <div style="background:#708090;color:white;padding:6px 8px;border-radius:4px;font-size:11px;font-weight:700;">Support Depts</div>
+              <div style="padding-left:16px;margin-top:8px;text-align:left;">
+                ${DEPARTMENTS.filter(d => ['public-relations','admin','human-resources','information-technology','procurement','digital-transformation','legal'].includes(d.id)).map(d => `<div style="color:#475569;font-size:10px;margin-bottom:3px;">└ ${d.icon} ${d.title}</div>`).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;background:#fefce8;border:1px solid #fde68a;border-radius:8px;padding:16px;">
+          <h3 style="color:#92400e;margin:0 0 10px;font-size:13px;">📋 Reporting Structure — Key Notes</h3>
+          <ul style="font-size:11px;color:#78350f;padding-left:18px;margin:0;line-height:1.9;">
+            <li><strong>Quality Assurance, Safety Management (SMS), Aviation Security (AVSEC), and IOSA Compliance</strong> report to the Accountable Manager (GM).</li>
+            <li><strong>Flight Operations, Crew Training, Ground Operations, Engineering &amp; CAMO</strong> are headed by CARC-designated Post Holders reporting to the AM.</li>
+            <li><strong>CFO and CCO</strong> are delegated Accountable Managers reporting to the GM.</li>
+            <li><strong>Public Relations, HR, IT, Admin/GMO, Procurement &amp; Supply Chain, Digital Transformation</strong> report directly to the President &amp; CEO.</li>
+            <li><strong>Legal Affairs</strong> reports to the Chairman / President &amp; CEO.</li>
+          </ul>
+        </div>
       </div>
 
       ${allDepts.map(dept => `
