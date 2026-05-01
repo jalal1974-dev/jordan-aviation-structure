@@ -254,7 +254,7 @@ function DownloadSection() {
               <div style="color:#64748b;font-size:10px;">↓</div>
               <div style="background:#1a2744;color:white;padding:6px 8px;border-radius:4px;font-size:11px;font-weight:700;">Accountable Manager (GM)</div>
               <div style="padding-left:16px;margin-top:8px;text-align:left;">
-                ${DEPARTMENTS.filter(d => ['flight-operations','crew-training','ground-operations','engineering-camo','quality-assurance','safety-management','aviation-security','iosa-compliance'].includes(d.id)).map(d => `<div style="color:#475569;font-size:10px;margin-bottom:3px;">└ ${d.icon} ${d.title}</div>`).join('')}
+                ${DEPARTMENTS.filter(d => ['flight-ops','training','ground-ops','engineering','quality','safety','aviation-security','iosa'].includes(d.id)).map(d => `<div style="color:#475569;font-size:10px;margin-bottom:3px;">└ ${d.icon} ${d.title}</div>`).join('')}
               </div>
             </div>
             <div style="text-align:center;">
