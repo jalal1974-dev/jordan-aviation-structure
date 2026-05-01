@@ -278,7 +278,7 @@ export const DEPARTMENTS = [
       {
         id: "dir-flight-ops",
         title: "Director Flight Operations",
-        reportsTo: "Head of Flight Operations",
+        reportsTo: "Head of Flight Operations (Post Holder)",
         purpose: "Manages the day-to-day flight operations activities for JAV fleet types (B737-300, B767-200, A320-211, A330-200), ensuring compliance with CARC-OPS 1, ICAO Annex 6, and AOC C002 Operations Specifications.",
         responsibilities: [
           "Manage day-to-day flight operations for all JAV fleet types",
@@ -299,7 +299,7 @@ export const DEPARTMENTS = [
       {
         id: "dir-cabin-ops",
         title: "Director Cabin Operations",
-        reportsTo: "Head of Flight Operations",
+        reportsTo: "Head of Flight Operations (Post Holder)",
         purpose: "Manages all cabin operations for JAV, ensuring cabin crew safety standards, service delivery, and compliance with CARC requirements. Serves as the primary liaison between flight deck crew and cabin crew.",
         responsibilities: [
           "Manage all cabin crew operations and ensure compliance with CARC regulations",
@@ -320,7 +320,7 @@ export const DEPARTMENTS = [
       {
         id: "dir-dispatch",
         title: "Director Dispatch and Route Planning",
-        reportsTo: "Head of Flight Operations",
+        reportsTo: "Head of Flight Operations (Post Holder)",
         purpose: "Leads the flight dispatch and route planning operations for all JAV flights, ensuring all aircraft are planned, released, and monitored in full compliance with CARC regulations and OPS SPECS.",
         responsibilities: [
           "Manage all flight dispatchers and control the Operations Control Center (OCC)",
@@ -341,7 +341,7 @@ export const DEPARTMENTS = [
       {
         id: "mgr-ops-pub",
         title: "Manager Operations Publication",
-        reportsTo: "Head of Flight Operations",
+        reportsTo: "Head of Flight Operations (Post Holder)",
         purpose: "Manages the preparation, amendment, distribution, and control of all flight operations manuals, publications, and documentation in compliance with CARC requirements.",
         responsibilities: [
           "Manage the preparation and amendment of all flight operations manuals and publications",
@@ -380,7 +380,7 @@ export const DEPARTMENTS = [
       {
         id: "first-officer",
         title: "First Officer",
-        reportsTo: "Captain",
+        reportsTo: "Captain (Line Pilot)",
         purpose: "Serves as co-pilot on JAV flights, supporting the Captain in all flight duties and ensuring safe, regulatory-compliant operations.",
         responsibilities: [
           "Assist Captain in all phases of flight from pre-flight to post-flight",
@@ -469,7 +469,7 @@ export const DEPARTMENTS = [
       {
         id: "dir-standards",
         title: "Director Standards & Training Development",
-        reportsTo: "Head of Training",
+        reportsTo: "Head of Training (Post Holder)",
         purpose: "Leads the development, standardization, and quality assurance of all training programs for pilots, cabin crew, and ground operations personnel at Jordan Aviation.",
         responsibilities: [
           "Develop and maintain standards for all crew training programs",
@@ -490,7 +490,7 @@ export const DEPARTMENTS = [
       {
         id: "dir-fct",
         title: "Director Flight Crew Training",
-        reportsTo: "Head of Training",
+        reportsTo: "Head of Training (Post Holder)",
         purpose: "Manages all flight crew training operations including type rating training, recurrent training, and check programs for all JAV fleet types.",
         responsibilities: [
           "Manage all flight crew training operations for B737-300, B767-200, A320-211, and A330-200",
@@ -511,7 +511,7 @@ export const DEPARTMENTS = [
       {
         id: "dir-cct",
         title: "Director Cabin Crew Training",
-        reportsTo: "Head of Training",
+        reportsTo: "Head of Training (Post Holder)",
         purpose: "Manages all cabin crew training operations including initial training, recurrent training, and safety equipment training for JAV cabin crew.",
         responsibilities: [
           "Manage all cabin crew training operations and programs",
@@ -660,7 +660,7 @@ export const DEPARTMENTS = [
       {
         id: "dir-ground-handling",
         title: "Director Ground Handling",
-        reportsTo: "Head of Ground Operations",
+        reportsTo: "Head of Ground Operations (Post Holder)",
         purpose: "Manages all ground handling operations for JAV at QAIA and all operating stations, ensuring safe, compliant, and efficient aircraft turnarounds.",
         responsibilities: [
           "Manage day-to-day ground handling operations at all JAV stations",
@@ -681,7 +681,7 @@ export const DEPARTMENTS = [
       {
         id: "cargo-mgr",
         title: "Cargo Handling Manager",
-        reportsTo: "Head of Ground Operations",
+        reportsTo: "Head of Ground Operations (Post Holder)",
         purpose: "Manages all cargo and mail operations for JAV, ensuring safe, compliant, and efficient cargo handling in compliance with IATA, ICAO, and CARC requirements.",
         responsibilities: [
           "Manage all cargo and mail operations for JAV at QAIA and operating stations",
@@ -761,7 +761,7 @@ export const DEPARTMENTS = [
       {
         id: "mgr-service-eng",
         title: "Manager Service Engineering",
-        reportsTo: "Head of Engineering / CAMO Manager",
+        reportsTo: "Head of Engineering / CAMO Manager (Post Holder)",
         purpose: "Manages the technical support, modifications, and component services for JAV fleet, ensuring aircraft components and systems meet airworthiness standards.",
         responsibilities: [
           "Manage technical support for JAV fleet types (B737-300, B767-200, A320-211, A330-200)",
@@ -780,7 +780,7 @@ export const DEPARTMENTS = [
       {
         id: "mgr-tech-planning",
         title: "Manager Technical Planning",
-        reportsTo: "Head of Engineering / CAMO Manager",
+        reportsTo: "Head of Engineering / CAMO Manager (Post Holder)",
         purpose: "Manages the planning and scheduling of all aircraft maintenance activities for JAV fleet, ensuring all checks are completed on time within the approved Maintenance Program.",
         responsibilities: [
           "Plan and schedule all aircraft maintenance checks per the Approved Maintenance Program",
@@ -799,7 +799,7 @@ export const DEPARTMENTS = [
       {
         id: "mgr-mcc",
         title: "Manager Maintenance Control Center (MCC)",
-        reportsTo: "Head of Engineering / CAMO Manager",
+        reportsTo: "Head of Engineering / CAMO Manager (Post Holder)",
         purpose: "Manages the Maintenance Control Center, overseeing day-to-day aircraft maintenance control, defect rectification, and aircraft availability for JAV fleet.",
         responsibilities: [
           "Manage the Maintenance Control Center (MCC) 24/7 operations",
@@ -818,7 +818,7 @@ export const DEPARTMENTS = [
       {
         id: "mgr-tech-pub",
         title: "Technical Publications Manager",
-        reportsTo: "Head of Engineering / CAMO Manager",
+        reportsTo: "Head of Engineering / CAMO Manager (Post Holder)",
         purpose: "Manages all technical publications for JAV fleet types, ensuring all maintenance documentation is current, controlled, and accessible to authorized personnel.",
         responsibilities: [
           "Manage all technical publications library for B737-300, B767-200, A320-211, and A330-200",
@@ -837,7 +837,7 @@ export const DEPARTMENTS = [
       {
         id: "mgr-airworthiness",
         title: "Manager Airworthiness",
-        reportsTo: "Head of Engineering / CAMO Manager",
+        reportsTo: "Head of Engineering / CAMO Manager (Post Holder)",
         purpose: "Manages the airworthiness review and certification activities for JAV fleet, ensuring continued airworthiness compliance with CARC Part-M requirements.",
         responsibilities: [
           "Manage airworthiness review process for all JAV fleet types",
@@ -897,7 +897,7 @@ export const DEPARTMENTS = [
       {
         id: "quality-auditor",
         title: "Quality Auditor",
-        reportsTo: "Quality Manager",
+        reportsTo: "Head of Quality / Quality Manager (Nominated)",
         purpose: "Conducts planned and unannounced quality audits across all JAV departments and contracted organizations to verify compliance with CARC regulations, JAV standards, and IATA/ICAO requirements.",
         responsibilities: [
           "Plan and execute quality audits of all JAV departments per the approved audit schedule",
@@ -965,7 +965,7 @@ export const DEPARTMENTS = [
       {
         id: "safety-auditor",
         title: "Safety Auditor",
-        reportsTo: "SMS Manager",
+        reportsTo: "Head of Safety / SMS Manager (Nominated)",
         purpose: "Conducts safety audits and assessments across JAV operations to identify safety hazards, verify SMS compliance, and support the safety monitoring program.",
         responsibilities: [
           "Conduct safety audits and assessments across JAV departments",
@@ -984,7 +984,7 @@ export const DEPARTMENTS = [
       {
         id: "erp-manager",
         title: "Emergency Response Planning Manager",
-        reportsTo: "SMS Manager",
+        reportsTo: "Head of Safety / SMS Manager (Nominated)",
         purpose: "Manages Jordan Aviation's Emergency Response Plan (ERP), ensuring readiness for aircraft accidents, incidents, and other emergency scenarios.",
         responsibilities: [
           "Develop, maintain, and exercise the JAV Emergency Response Plan (ERP)",
@@ -1055,7 +1055,7 @@ export const DEPARTMENTS = [
       {
         id: "avsec-ops-mgr",
         title: "AVSEC Operations Manager",
-        reportsTo: "Head of Security / AVSEC Manager",
+        reportsTo: "Head of Security / AVSEC Manager (Nominated)",
         purpose: "Manages the day-to-day operational security activities for Jordan Aviation, ensuring security procedures are implemented effectively at all operating locations.",
         responsibilities: [
           "Manage day-to-day AVSEC operations at all JAV operating locations",
@@ -1074,7 +1074,7 @@ export const DEPARTMENTS = [
       {
         id: "avsec-quality-mgr",
         title: "AVSEC Quality Manager",
-        reportsTo: "Head of Security / AVSEC Manager",
+        reportsTo: "Head of Security / AVSEC Manager (Nominated)",
         purpose: "Manages the quality assurance function within the Aviation Security department, conducting security audits and assessments to ensure compliance with the ACSP.",
         responsibilities: [
           "Conduct security quality audits at all JAV operating locations",
@@ -1245,7 +1245,7 @@ export const DEPARTMENTS = [
       {
         id: "dir-intl-affairs",
         title: "International Affairs Director",
-        reportsTo: "Chief Commercial Officer",
+        reportsTo: "Chief Commercial Officer (CCO)",
         purpose: "Manages all international affairs and bilateral relations for Jordan Aviation, coordinating with foreign governments, IATA, ICAO, and international aviation bodies.",
         responsibilities: [
           "Manage Jordan Aviation's international affairs and bilateral air services agreements",
@@ -1263,7 +1263,7 @@ export const DEPARTMENTS = [
       {
         id: "dir-marketing",
         title: "Marketing Director",
-        reportsTo: "Chief Commercial Officer",
+        reportsTo: "Chief Commercial Officer (CCO)",
         purpose: "Develops and implements marketing strategies to promote Jordan Aviation's brand, products, and services in all target markets.",
         responsibilities: [
           "Develop and execute comprehensive marketing strategies for JAV",
@@ -1282,7 +1282,7 @@ export const DEPARTMENTS = [
       {
         id: "dir-sales",
         title: "Sales Director",
-        reportsTo: "Chief Commercial Officer",
+        reportsTo: "Chief Commercial Officer (CCO)",
         purpose: "Manages all sales activities for Jordan Aviation including direct sales, agency sales, and charter brokerage.",
         responsibilities: [
           "Lead all sales activities for JAV scheduled and charter operations",
@@ -1301,7 +1301,7 @@ export const DEPARTMENTS = [
       {
         id: "res-capacity",
         title: "Manager Reservation & Capacity Control",
-        reportsTo: "Chief Commercial Officer",
+        reportsTo: "Chief Commercial Officer (CCO)",
         purpose: "Manages all reservation systems, capacity control, and revenue optimization for Jordan Aviation flights.",
         responsibilities: [
           "Manage JAV reservation systems and booking platforms",
@@ -1320,7 +1320,7 @@ export const DEPARTMENTS = [
       {
         id: "non-sched-charter",
         title: "Manager Non-Scheduled & Charter Operations",
-        reportsTo: "Chief Commercial Officer",
+        reportsTo: "Chief Commercial Officer (CCO)",
         purpose: "Manages all non-scheduled and charter flight activities for Jordan Aviation, including military charters, ACMI operations, and leisure charters.",
         responsibilities: [
           "Manage all non-scheduled and charter flight sales and operations",
@@ -1382,7 +1382,7 @@ export const DEPARTMENTS = [
       {
         id: "finance-secretary",
         title: "Secretary (Finance)",
-        reportsTo: "Chief Financial Officer",
+        reportsTo: "Chief Financial Officer (CFO)",
         purpose: "Provides administrative support to the CFO and Finance department, managing records, correspondence, and scheduling.",
         responsibilities: [
           "Type all required correspondence in the CFO office",
@@ -1401,7 +1401,7 @@ export const DEPARTMENTS = [
       {
         id: "finance-team",
         title: "Finance Team",
-        reportsTo: "Chief Financial Officer",
+        reportsTo: "Chief Financial Officer (CFO)",
         purpose: "Manages all financial operations including accounting, accounts payable/receivable, payroll, and financial reporting for Jordan Aviation.",
         responsibilities: [
           "Process and manage all financial transactions and accounting records",
@@ -1567,7 +1567,7 @@ export const DEPARTMENTS = [
       {
         id: "secretary",
         title: "Secretary (GM Office)",
-        reportsTo: "General Manager / Office Manager",
+        reportsTo: "Office Manager",
         purpose: "Manages all records, phone calls, and correspondence in the GM office.",
         responsibilities: [
           "Type all required correspondence in the GM office",
@@ -1667,7 +1667,7 @@ export const DEPARTMENTS = [
       {
         id: "hr-officer",
         title: "HR Officer",
-        reportsTo: "HR Manager",
+        reportsTo: "HR Director",
         purpose: "Supports day-to-day HR operations including personnel records management, recruitment coordination, and employee administration across Jordan Aviation.",
         responsibilities: [
           "Maintain and update employee personnel files (physical and digital)",
@@ -1823,7 +1823,7 @@ export const DEPARTMENTS = [
       {
         id: "cs-manager",
         title: "Customer Service Manager",
-        reportsTo: "Chief Commercial Officer",
+        reportsTo: "Chief Commercial Officer (CCO)",
         purpose: "Manages all customer-facing service activities for Jordan Aviation, ensuring passengers receive a consistent, high-quality experience at every touchpoint and that all complaints and special requests are handled in accordance with JAV standards and CARC passenger rights regulations.",
         responsibilities: [
           "Develop and implement customer service policies, standards, and procedures for JAV",
@@ -2024,7 +2024,7 @@ export const DEPARTMENTS = [
       {
         id: "data-analytics-mgr",
         title: "Data Analytics Manager",
-        reportsTo: "Chief Digital Officer",
+        reportsTo: "Chief Digital Officer (CDO)",
         purpose: "Manages JAV's data analytics function, developing dashboards, reports, and predictive models that support data-driven decision-making across all departments including operations, safety, commercial, and finance.",
         responsibilities: [
           "Build and manage JAV's business intelligence and analytics platform",
@@ -2043,7 +2043,7 @@ export const DEPARTMENTS = [
       {
         id: "ai-solutions-engineer",
         title: "AI Solutions Engineer",
-        reportsTo: "Chief Digital Officer",
+        reportsTo: "Chief Digital Officer (CDO)",
         purpose: "Designs, develops, and deploys AI and machine learning solutions for Jordan Aviation, translating operational and business requirements into practical AI tools that improve efficiency and decision-making.",
         responsibilities: [
           "Design and develop AI and machine learning models for JAV operational challenges",
@@ -2062,7 +2062,7 @@ export const DEPARTMENTS = [
       {
         id: "digital-transformation-pm",
         title: "Digital Transformation Project Manager",
-        reportsTo: "Chief Digital Officer",
+        reportsTo: "Chief Digital Officer (CDO)",
         purpose: "Plans, coordinates, and delivers JAV's digital transformation projects, ensuring initiatives are delivered on time, within budget, and achieve their intended business outcomes.",
         responsibilities: [
           "Manage the digital transformation project portfolio for JAV",
