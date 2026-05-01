@@ -1,5 +1,15 @@
-import React, { useState, useMemo, useRef, useCallback } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { EXECUTIVE_TEAM, DEPARTMENTS } from '../data/orgData.js';
+
+const CEO_DIRECT_DEPTS = new Set([
+  'public-relations',
+  'admin',
+  'human-resources',
+  'information-technology',
+  'procurement',
+  'digital-transformation',
+  'legal',
+]);
 
 const REPORT_ALIASES = {
   'accountable manager': 'Accountable Manager (General Manager)',
@@ -7,13 +17,25 @@ const REPORT_ALIASES = {
   'accountable manager (nominated post holder)': 'Accountable Manager (General Manager)',
   'accountable manager / general manager': 'Accountable Manager (General Manager)',
   'accountable manager / coo': 'Accountable Manager (General Manager)',
-  'chairman / president & ceo': 'Chairman of the Board',
+  'chairman / president & ceo': 'President & CEO',
   'board of directors': 'Board of Directors',
 };
 
-function normReportsTo(reportsTo) {
+function normReportsTo(reportsTo, deptId) {
   if (!reportsTo) return null;
   const lower = reportsTo.toLowerCase().trim();
+
+  if (CEO_DIRECT_DEPTS.has(deptId)) {
+    if (
+      lower === 'general manager' ||
+      lower === 'general manager / accountable manager' ||
+      lower === 'chairman / president & ceo' ||
+      lower.startsWith('chairman')
+    ) {
+      return 'President & CEO';
+    }
+  }
+
   if (REPORT_ALIASES[lower]) return REPORT_ALIASES[lower];
   if (lower.startsWith('accountable manager')) return 'Accountable Manager (General Manager)';
   return reportsTo;
@@ -61,7 +83,7 @@ function buildTree(positions) {
   positions.forEach(p => {
     if (p.title === 'Board of Directors') return;
 
-    const resolvedParent = normReportsTo(p.reportsTo);
+    const resolvedParent = normReportsTo(p.reportsTo, p.deptId);
     let parentTitle = null;
 
     if (!resolvedParent) {
@@ -145,11 +167,11 @@ export default function CompanyHierarchyChart({ onPositionClick }) {
   const [dragStart, setDragStart] = useState(null);
   const [hovered, setHovered] = useState(null);
 
-  const { positions, edges, allNodes } = useMemo(() => {
+  const { edges, allNodes } = useMemo(() => {
     const allPositions = collectAllPositions();
     const root = buildTree(allPositions);
     const pos = calcLayout(root);
-    const edges = getEdges(root, pos);
+    const edgeList = getEdges(root, pos);
 
     const xs = Object.values(pos).map(p => p.x);
     const minX = Math.min(...xs) - NODE_W / 2 - 40;
@@ -157,11 +179,17 @@ export default function CompanyHierarchyChart({ onPositionClick }) {
     const adjusted = {};
     Object.keys(pos).forEach(k => { adjusted[k] = { x: pos[k].x + offsetX, y: pos[k].y }; });
 
-    const allNodes = allPositions
+    const nodes = allPositions
       .map(p => ({ ...p, pos: adjusted[p.title] }))
       .filter(p => p.pos);
 
-    return { positions: adjusted, edges, allNodes };
+    const adjustedEdges = edgeList.map(e => ({
+      ...e,
+      from: { x: e.from.x + offsetX, y: e.from.y },
+      to: { x: e.to.x + offsetX, y: e.to.y },
+    }));
+
+    return { edges: adjustedEdges, allNodes: nodes };
   }, []);
 
   const handleMouseDown = useCallback(e => {
