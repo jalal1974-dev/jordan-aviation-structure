@@ -268,6 +268,11 @@ function DownloadSection() {
               <div style="color:#64748b;font-size:10px;">↓</div>
               <div style="background:#1a2744;color:white;padding:6px 8px;border-radius:4px;font-size:11px;font-weight:700;">CCO</div>
               <div style="padding-left:16px;margin-top:8px;text-align:left;">
+                <div style="color:#475569;font-size:10px;margin-bottom:3px;">└ 🌍 International Affairs</div>
+                <div style="color:#475569;font-size:10px;margin-bottom:3px;">└ 📣 Marketing</div>
+                <div style="color:#475569;font-size:10px;margin-bottom:3px;">└ 💼 Sales & Revenue</div>
+                <div style="color:#475569;font-size:10px;margin-bottom:3px;">└ 🎫 Reservation & Capacity</div>
+                <div style="color:#475569;font-size:10px;margin-bottom:3px;">└ ✈️ Charter Operations</div>
                 ${DEPARTMENTS.filter(d => d.category === 'commercial').map(d => `<div style="color:#475569;font-size:10px;margin-bottom:3px;">└ ${d.icon} ${d.title}</div>`).join('')}
               </div>
             </div>
@@ -286,6 +291,7 @@ function DownloadSection() {
           <ul style="font-size:11px;color:#78350f;padding-left:18px;margin:0;line-height:1.9;">
             <li><strong>Quality Assurance, Safety Management (SMS), Aviation Security (AVSEC), and IOSA Compliance</strong> report to the Accountable Manager (GM).</li>
             <li><strong>Flight Operations, Crew Training, Ground Operations, Engineering &amp; CAMO</strong> are headed by CARC-designated Post Holders reporting to the AM.</li>
+            <li><strong>CCO direct reports:</strong> International Affairs, Marketing, Sales &amp; Revenue, Reservation &amp; Capacity Control, Non-Scheduled &amp; Charter Operations, and Customer Service.</li>
             <li><strong>CFO and CCO</strong> are delegated Accountable Managers reporting to the GM.</li>
             <li><strong>Public Relations, HR, IT, Admin/GMO, Procurement &amp; Supply Chain, Digital Transformation</strong> report directly to the President &amp; CEO.</li>
             <li><strong>Legal Affairs</strong> reports to the Chairman / President &amp; CEO.</li>

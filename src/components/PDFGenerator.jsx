@@ -373,11 +373,17 @@ export default function PDFGenerator({ style }) {
       y += boxH + 6;
 
       // Under CCO
-      sf(8.5, 'bold', NAVY); tx('CCO — Direct Reports:', M, y); y += 6;
-      ['Commercial', 'Customer Service'].forEach((d, i) => {
-        drawBox(d, M + i * 64, y, 60, boxH, [184,134,11], WHITE, 6.5);
+      checkY(30);
+      sf(8.5, 'bold', NAVY); tx('CCO (Chief Commercial Officer) — Direct Reports:', M, y); y += 6;
+      const ccoDirect = [
+        'International Affairs', 'Marketing', 'Sales & Revenue',
+        'Reservation & Capacity', 'Charter Operations', 'Customer Service',
+      ];
+      const ccoBoxW = (CW - 5 * 3) / 6;
+      ccoDirect.forEach((d, i) => {
+        drawBox(d, M + i * (ccoBoxW + 3), y, ccoBoxW, boxH + 1, [184,134,11], WHITE, 5.8);
       });
-      y += boxH + 8;
+      y += boxH + 1 + 8;
       hline(y, GOLD, 0.5); y += 10;
 
       // Reporting notes
@@ -385,6 +391,7 @@ export default function PDFGenerator({ style }) {
       const notes = [
         'Quality Assurance, Safety Management (SMS), Aviation Security (AVSEC), and IOSA Compliance report to the Accountable Manager (GM).',
         'Flight Operations, Crew Training, Ground Operations, and Engineering & CAMO are headed by CARC-designated Post Holders reporting to the AM.',
+        'CCO direct reports: International Affairs, Marketing, Sales & Revenue, Reservation & Capacity Control, Non-Scheduled & Charter Operations, and Customer Service.',
         'CFO and CCO are delegated Accountable Managers reporting to the General Manager (AM).',
         'Public Relations, HR, IT, Admin/GMO, Procurement & Supply Chain, and Digital Transformation report directly to the President & CEO.',
         'Legal Affairs and Consultants report to the Chairman / President & CEO.',
