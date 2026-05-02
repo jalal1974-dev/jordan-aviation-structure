@@ -31,8 +31,8 @@ export default function Navbar() {
     }
   };
 
-  const technical = DEPARTMENTS.filter(d => d.category === 'technical');
-  const nonTechnical = DEPARTMENTS.filter(d => d.category !== 'technical');
+  const technical = DEPARTMENTS.filter(d => d.category === 'technical' || d.category === 'safety-compliance');
+  const nonTechnical = DEPARTMENTS.filter(d => d.category !== 'technical' && d.category !== 'safety-compliance');
 
   return (
     <nav style={{
