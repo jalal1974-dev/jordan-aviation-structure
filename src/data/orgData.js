@@ -1209,10 +1209,8 @@ export const DEPARTMENTS = [
     category: "commercial",
     color: "#b8860b",
     reportsTo: "Chief Commercial Officer (CCO)",
-    description: "The Commercial department, led by the Chief Commercial Officer, is responsible for all scheduled and charter flights, global sales activities, marketing, reservations, and international affairs. Acts as the delegated Accountable Manager for commercial matters and reports directly to the General Manager.",
+    description: "The Commercial department is led by the Chief Commercial Officer (CCO), acting as the delegated Accountable Manager for all commercial matters and reporting to the General Manager. The CCO oversees International Affairs, Marketing, Sales, Reservations & Capacity Control, Charter Operations, and Customer Service.",
     sops: [
-      { id: "sop-com-001", title: "Charter Flight Sales and Contracting Procedures", reference: "Commercial Manual Ch.3", revision: "Rev.03" },
-      { id: "sop-com-002", title: "GSA Agreement Management", reference: "Commercial Manual Ch.4", revision: "Rev.03" },
       { id: "sop-com-003", title: "Revenue Management and Pricing Procedures", reference: "Commercial Manual Ch.5", revision: "Rev.02" },
     ],
     positions: [
@@ -1242,6 +1240,22 @@ export const DEPARTMENTS = [
         experience: "Minimum 12 years in airline commercial management",
         kpis: ["Total revenue", "Charter utilization rate", "Market share", "Customer satisfaction", "Revenue per ASK (RASK)"],
       },
+    ],
+  },
+
+  {
+    id: "international-affairs",
+    title: "International Affairs",
+    icon: "🌍",
+    category: "commercial",
+    color: "#1a6b9a",
+    reportsTo: "Chief Commercial Officer (CCO)",
+    description: "Manages all international affairs and bilateral air services relations for Jordan Aviation, coordinating with foreign governments, IATA, ICAO, and international aviation regulatory bodies to secure route authorizations and maintain international partnerships.",
+    sops: [
+      { id: "sop-ia-001", title: "International Route Authorization and Permit Procedures", reference: "IA Manual Ch.2", revision: "Rev.02" },
+      { id: "sop-ia-002", title: "Bilateral Air Services Agreement Monitoring Procedures", reference: "IA Manual Ch.3", revision: "Rev.01" },
+    ],
+    positions: [
       {
         id: "dir-intl-affairs",
         title: "International Affairs Director",
@@ -1260,6 +1274,23 @@ export const DEPARTMENTS = [
         experience: "Minimum 8 years in aviation international affairs",
         kpis: ["Route authorization success rate", "International relations quality", "IATA forum participation"],
       },
+    ],
+  },
+
+  {
+    id: "marketing",
+    title: "Marketing",
+    icon: "📣",
+    category: "commercial",
+    color: "#8b1a4a",
+    reportsTo: "Chief Commercial Officer (CCO)",
+    description: "Develops and executes all marketing and brand strategies for Jordan Aviation across digital channels, media, and market segments to promote the airline's products, services, and brand identity globally.",
+    sops: [
+      { id: "sop-mkt-001", title: "Brand and Communications Management Procedures", reference: "Marketing Manual Ch.2", revision: "Rev.02" },
+      { id: "sop-mkt-002", title: "Digital Marketing and Social Media Management Procedures", reference: "Marketing Manual Ch.4", revision: "Rev.02" },
+      { id: "sop-mkt-003", title: "Market Research and Campaign Evaluation Procedures", reference: "Marketing Manual Ch.5", revision: "Rev.01" },
+    ],
+    positions: [
       {
         id: "dir-marketing",
         title: "Marketing Director",
@@ -1279,6 +1310,22 @@ export const DEPARTMENTS = [
         experience: "Minimum 8 years in marketing management, with aviation industry experience",
         kpis: ["Brand awareness score", "Marketing ROI", "Digital engagement metrics", "Campaign effectiveness"],
       },
+    ],
+  },
+
+  {
+    id: "sales",
+    title: "Sales",
+    icon: "🤝",
+    category: "commercial",
+    color: "#1a7a4a",
+    reportsTo: "Chief Commercial Officer (CCO)",
+    description: "Manages all direct and agency sales activities for Jordan Aviation including scheduled and charter flight sales, GSA agreement management, and global agent network development across all market segments.",
+    sops: [
+      { id: "sop-com-002", title: "GSA Agreement Management", reference: "Commercial Manual Ch.4", revision: "Rev.03" },
+      { id: "sop-sales-001", title: "Sales Target Planning and Performance Reporting Procedures", reference: "Sales Manual Ch.2", revision: "Rev.02" },
+    ],
+    positions: [
       {
         id: "dir-sales",
         title: "Sales Director",
@@ -1298,6 +1345,22 @@ export const DEPARTMENTS = [
         experience: "Minimum 8 years in airline sales management",
         kpis: ["Revenue vs target", "Load factor %", "GSA performance", "Key account satisfaction"],
       },
+    ],
+  },
+
+  {
+    id: "reservations",
+    title: "Reservations & Capacity",
+    icon: "🎫",
+    category: "commercial",
+    color: "#6a3a8a",
+    reportsTo: "Chief Commercial Officer (CCO)",
+    description: "Manages all reservation systems, capacity control, revenue optimization, and yield management for Jordan Aviation scheduled and charter flights across all GDS platforms and booking channels.",
+    sops: [
+      { id: "sop-res-001", title: "Reservation System Management and GDS Procedures", reference: "Reservations Manual Ch.2", revision: "Rev.03" },
+      { id: "sop-res-002", title: "Capacity Control and Inventory Management Procedures", reference: "Reservations Manual Ch.3", revision: "Rev.02" },
+    ],
+    positions: [
       {
         id: "res-capacity",
         title: "Manager Reservation & Capacity Control",
@@ -1317,6 +1380,22 @@ export const DEPARTMENTS = [
         experience: "Minimum 5 years in airline reservations and revenue management",
         kpis: ["Load factor %", "Revenue per flight", "Booking lead time", "GDS performance"],
       },
+    ],
+  },
+
+  {
+    id: "charter-ops",
+    title: "Charter Operations",
+    icon: "🛫",
+    category: "commercial",
+    color: "#1a4a7a",
+    reportsTo: "Chief Commercial Officer (CCO)",
+    description: "Manages all non-scheduled and charter flight commercial activities for Jordan Aviation, including military charters, ACMI operations, wet leases, and leisure charters for clients worldwide.",
+    sops: [
+      { id: "sop-com-001", title: "Charter Flight Sales and Contracting Procedures", reference: "Commercial Manual Ch.3", revision: "Rev.03" },
+      { id: "sop-charter-001", title: "ACMI Agreement and Wet Lease Procedures", reference: "Charter Manual Ch.2", revision: "Rev.02" },
+    ],
+    positions: [
       {
         id: "non-sched-charter",
         title: "Manager Non-Scheduled & Charter Operations",

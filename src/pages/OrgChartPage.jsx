@@ -4,7 +4,7 @@ import { DEPARTMENTS } from '../data/orgData.js';
 import CompanyHierarchyChart from '../components/CompanyHierarchyChart.jsx';
 import JobDescModal from '../components/JobDescModal.jsx';
 
-const W = 3800;
+const W = 5200;
 const ROW_H = 140;
 const COL_W = 160;
 const COL_GAP = 22;
@@ -30,14 +30,14 @@ const CEO_X = W / 2;
 
 const AM_DEPTS_COUNT = technicalDepts.length + safetyDepts.length;
 const AM_DEPTS_TOTAL_W = AM_DEPTS_COUNT * UNIT;
-const AM_DEPTS_START = 703;
+const AM_DEPTS_START = 600;
 const AM_X = AM_DEPTS_START + (AM_DEPTS_COUNT / 2) * UNIT - UNIT / 2 + COL_W / 2;
 
-const CEO_SUPP_START = AM_DEPTS_START + AM_DEPTS_TOTAL_W + 30;
+const CEO_SUPP_START = AM_DEPTS_START + AM_DEPTS_TOTAL_W + 20;
 const CEO_SUPP_END   = CEO_SUPP_START + ceoSupportDepts.length * UNIT - COL_GAP;
 
-const CCO_X = CEO_SUPP_END + UNIT + COL_W / 2;
-const CCO_DEPTS_START = CCO_X - UNIT / 2;
+const CCO_DEPTS_START = CEO_SUPP_END + 30;
+const CCO_X = CCO_DEPTS_START + (ccoDepts.length / 2) * UNIT - UNIT / 2 + COL_W / 2;
 
 const CFO_X = 380;
 const LEGAL_X = 120;
